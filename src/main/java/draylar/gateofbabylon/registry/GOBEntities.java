@@ -3,7 +3,6 @@ package draylar.gateofbabylon.registry;
 import draylar.gateofbabylon.GateOfBabylon;
 import draylar.gateofbabylon.entity.BoomerangEntity;
 import draylar.gateofbabylon.entity.SpearProjectileEntity;
-import draylar.gateofbabylon.entity.YoyoEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -21,15 +20,6 @@ public class GOBEntities {
                     .<SpearProjectileEntity>create(SpawnGroup.MISC, (SpearProjectileEntity::new))
                     .trackable(128, 4)
                     .dimensions(EntityDimensions.fixed(.5f, .5f)).build());
-
-    public static final EntityType<YoyoEntity> YOYO = register(
-            "yoyo",
-            FabricEntityTypeBuilder
-                .<YoyoEntity>create(SpawnGroup.MISC, YoyoEntity::new)
-                    .trackRangeBlocks(128)
-                    .trackedUpdateRate(1)
-                    .forceTrackedVelocityUpdates(true)
-                .dimensions(EntityDimensions.fixed(.25f, .25f)).build());
 
     public static final EntityType<BoomerangEntity> BOOMERANG = register(
             "boomerang",

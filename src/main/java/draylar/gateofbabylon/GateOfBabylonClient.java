@@ -2,17 +2,17 @@ package draylar.gateofbabylon;
 
 import draylar.gateofbabylon.client.BoomerangEntityRenderer;
 import draylar.gateofbabylon.client.SpearProjectileEntityRenderer;
-import draylar.gateofbabylon.client.YoyoEntityRenderer;
 import draylar.gateofbabylon.entity.BoomerangEntity;
 import draylar.gateofbabylon.entity.SpearProjectileEntity;
-import draylar.gateofbabylon.entity.YoyoEntity;
 import draylar.gateofbabylon.item.CustomBowItem;
+import draylar.gateofbabylon.particles.ConstantColorDamageParticle;
 import draylar.gateofbabylon.registry.GOBEntities;
 import draylar.gateofbabylon.registry.GOBItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -33,7 +33,7 @@ public class GateOfBabylonClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.INSTANCE.register(GOBEntities.SPEAR, dispatcher -> new SpearProjectileEntityRenderer(dispatcher, MinecraftClient.getInstance().getItemRenderer()));
-        EntityRendererRegistry.INSTANCE.register(GOBEntities.YOYO, YoyoEntityRenderer::new);
+//        EntityRendererRegistry.INSTANCE.register(GOBEntities.YOYO, YoyoEntityRenderer::new);
         EntityRendererRegistry.INSTANCE.register(GOBEntities.BOOMERANG, BoomerangEntityRenderer::new);
 
         ClientSidePacketRegistry.INSTANCE.register(SpearProjectileEntity.ENTITY_ID, (context, packet) -> {
@@ -50,20 +50,6 @@ public class GateOfBabylonClient implements ClientModInitializer {
             });
         });
 
-        ClientSidePacketRegistry.INSTANCE.register(YoyoEntity.SPAWN_PACKET_ID, (context, packet) -> {
-            double x = packet.readDouble();
-            double y = packet.readDouble();
-            double z = packet.readDouble();
-
-            int entityId = packet.readInt();
-
-            context.getTaskQueue().execute(() -> {
-                YoyoEntity yoyo = new YoyoEntity(MinecraftClient.getInstance().world, x, y, z);
-                yoyo.setId(entityId);
-                MinecraftClient.getInstance().world.addEntity(entityId, yoyo);
-            });
-        });
-
         ClientSidePacketRegistry.INSTANCE.register(BoomerangEntity.SPAWN_PACKET_ID, (context, packet) -> {
             double x = packet.readDouble();
             double y = packet.readDouble();
@@ -77,6 +63,8 @@ public class GateOfBabylonClient implements ClientModInitializer {
                 MinecraftClient.getInstance().world.addEntity(entityId, boomerang);
             });
         });
+
+        ParticleFactoryRegistry.getInstance().register(GateOfBabylon.COLORED_CRIT, ConstantColorDamageParticle.DefaultFactory::new);
 
         registerBowPredicates(GOBItems.STONE_BOW);
         registerBowPredicates(GOBItems.IRON_BOW);
@@ -115,7 +103,7 @@ public class GateOfBabylonClient implements ClientModInitializer {
             if (livingEntity == null) {
                 return 0.0F;
             } else {
-                return livingEntity.getActiveItem() != itemStack ? 0.0F : (float)(itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / bow.getMaxDrawTime(itemStack);
+                return livingEntity.getActiveItem() != itemStack ? 0.0F : (float) (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / bow.getMaxDrawTime(itemStack);
             }
         });
 

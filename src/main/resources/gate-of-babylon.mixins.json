@@ -6,7 +6,6 @@
     "AreaEffectCloudEntityAccessor",
     "AreaEffectCloudEntityMixin",
     "BlockSoundGroupAccessor",
-    "ClientPlayerEntityYoyoUsageMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
     "FallingBlockEntityAccessor",

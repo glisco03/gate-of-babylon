@@ -15,6 +15,7 @@
   "license": "MIT",
   "icon": "assets/gateofbabylon/icon.png",
   "environment": "*",
+  "accessWidener": "gateofbabylon.accesswidener",
   "entrypoints": {
     "main": [
       "draylar.gateofbabylon.GateOfBabylon"
