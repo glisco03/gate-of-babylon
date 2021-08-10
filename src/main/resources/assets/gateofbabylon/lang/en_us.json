@@ -5,12 +5,19 @@
   "gateofbabylon.bow_draw_speed": "%ds Draw Speed",
 
   "enchantment.gateofbabylon.lunging": "Lunging",
+  "enchantment.gateofbabylon.lunging.desc": "Increases the lunging distance of a Rapier",
   "enchantment.gateofbabylon.smashing": "Smashing",
+  "enchantment.gateofbabylon.smashing.desc": "Increases the range of the Waraxe's smash ability",
   "enchantment.gateofbabylon.thunder_slash": "Thunder Slash",
+  "enchantment.gateofbabylon.thunder_slash.desc": "[Katana] Strikes the slashed foe with lightning ",
   "enchantment.gateofbabylon.flame_slash": "Flame Slash",
+  "enchantment.gateofbabylon.flame_slash.desc": "[Katana] Sets the slashed foe ablaze",
   "enchantment.gateofbabylon.dragon_slash": "Dragon Slash",
+  "enchantment.gateofbabylon.dragon_slash.desc": "[Katana] Conjures the Ender Dragon's breath along the slashed path",
   "enchantment.gateofbabylon.vampire_slash": "Vampire Slash",
+  "enchantment.gateofbabylon.vampire_slash.desc": "[Katana] Heals the user upon slashing en enemy",
   "enchantment.gateofbabylon.quickdraw": "Quick Draw",
+  "enchantment.gateofbabylon.quickdraw.desc": "Decreases the draw time on Gate of Babylon Bows",
 
   "item.gateofbabylon.extended_stick": "Extended Stick",
 
